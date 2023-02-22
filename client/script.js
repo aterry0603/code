@@ -59,69 +59,62 @@ function chatStripe (isAi, value, uniqueId) {
 
 const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     const data = new FormData(form);
+    const promptValue = data.get('prompt').trim();
+  
+    if (promptValue.toLowerCase() === 'what is your name'){
+      chatContainer.innerHTML += chatStripe(true, "My name is Pinto! How can I assist you?", generateUniqueId());
 
-    //user's chatstripe
-    chatContainer.innerHTML += chatStripe(false, data.get('prompt'));
-
-    form.reset();
-
-    //bot's chatstripe
-
-    const uniqueId = generateUniqueId();
-    chatContainer.innerHTML += chatStripe(true, " ", uniqueId);
-
-    chatContainer.scrollTop = chatContainer.scrollHeight;
-    
-    const messageDiv = document.getElementById(uniqueId);
-
-    loader(messageDiv);
-
-    // setch data from server -> bot's response
-
-    const response = await fetch('https://pinto-ri0f.onrender.com', {
+      
+      form.reset();
+      
+    } else {
+      // user's chatstripe
+      chatContainer.innerHTML += chatStripe(false, promptValue, generateUniqueId());
+      form.reset();
+  
+      // bot's chatstripe
+      const uniqueId = generateUniqueId();
+      chatContainer.innerHTML += chatStripe(true, " ", uniqueId);
+  
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+  
+      const messageDiv = document.getElementById(uniqueId);
+  
+      loader(messageDiv);
+  
+      // fetch data from server -> bot's response
+      const response = await fetch('https://pinto-ri0f.onrender.com', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            prompt: data.get('prompt')
+          prompt: promptValue
         })
-    })
-
-
-    clearInterval(loadInterval);
-    messageDiv.innerHTML = '';
-
-    if(response.ok) {
+      })
+  
+      clearInterval(loadInterval);
+      messageDiv.innerHTML = '';
+  
+      if (response.ok) {
         const data = await response.json();
         const parsedData = data.bot.trim();
-
+  
         typeText(messageDiv, parsedData);
-    } else {
+      } else {
         const err = await response.text();
-
-        messageDiv.innerHTML = "Something went terrible wrong";
-
+  
+        messageDiv.innerHTML = "Something went terribly wrong";
+  
         alert(err);
-
+      }
     }
-
-}
-
-
-function generateChatName() {
-    const timestamp = Date.now();
-    const randomNumber = Math.floor(Math.random() * 1000);
-    return `chatHistory ${timestamp}-${randomNumber}`;
   }
   
-function saveChatHistory(chatHistory) {
-    localStorage.setItem('chatHistory', JSON.stringify(chatHistory));
-  }
 
-  const chatHistory = JSON.parse(localStorage.getItem('chatHistory')) || {};
+
 
 
 
