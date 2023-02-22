@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <div id="side_menu"></div>
+    <div id="side_menu">
+      <button id="new_chat_button" onclick="startNewChat()">New Chat</button>
+    </div>
     <div id="app">
       <div id="chat_container"></div>
       
@@ -22,5 +24,11 @@
       </div>
     </div>
     <script type="module" src="script.js"></script>
+    <script>
+      function startNewChat() {
+        const chatContainer = document.querySelector('#chat_container');
+        chatContainer.innerHTML = '';
+      }
+    </script>
   </body>
 </html>

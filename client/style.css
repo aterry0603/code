@@ -29,7 +29,22 @@ body {
   }
 }
 
+#new_chat_button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background-color: #3f51b5;
+  cursor: pointer;
+}
 
+#new_chat_button:hover {
+  background-color: #2c3e50;
+}
 
 
 #app {
@@ -117,7 +132,7 @@ body {
 
 .message {
   color: #dcdcdc;
-  font-size: 20px;
+  font-size: 16px;
 
   max-width: 100%;
   overflow-x: scroll;
@@ -142,11 +157,11 @@ body {
 .form-container {
   position: fixed;
   bottom: 0;
-  left: center;
+  left:center;
   width: 60%;
   background-color: #40414F;
-  padding: 10px;
-  box-sizing: border-box;
+  padding: 1px;
+  box-sizing:content-box;
   z-index: 9999;
 }
 
@@ -172,21 +187,21 @@ form {
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 10px;
+  padding: 1px;
   background: #40414F;
 
   display: flex;
   flex-direction: row;
-  gap: 10px;
+  gap: 5px;
 }
 
 textarea {
   flex: 1;
-  margin-right: 10px;
+  margin-right: 1px;
   resize: none;
   border: none;
   outline: none;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 button {
@@ -196,6 +211,6 @@ button {
 }
 
 form img {
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
 }

@@ -110,6 +110,22 @@ const handleSubmit = async (e) => {
 
 }
 
+
+function generateChatName() {
+    const timestamp = Date.now();
+    const randomNumber = Math.floor(Math.random() * 1000);
+    return `chatHistory ${timestamp}-${randomNumber}`;
+  }
+  
+function saveChatHistory(chatHistory) {
+    localStorage.setItem('chatHistory', JSON.stringify(chatHistory));
+  }
+
+  const chatHistory = JSON.parse(localStorage.getItem('chatHistory')) || {};
+
+
+
+
 form.addEventListener('submit', handleSubmit);
 form.addEventListener('keyup', (e) => {
     if (e.keyCode === 13) {
