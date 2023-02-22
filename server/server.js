@@ -15,6 +15,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+let conversationHistory = [];
+
 app.get('/', async (req, res) => {
     res.status(200).send({
         message: 'Hello from Pinto',
@@ -36,9 +38,15 @@ app.post('/', async (req, res) => {
             
         });
 
+        const botResponse = response.data.choices[0].text;
+
+        // Append the current conversation to the history
+        conversationHistory.push({ user: prompt, bot: botResponse });
+
         res.status(200).send({
-            bot: response.data.choices[0].text
-        })
+            bot: botResponse,
+            conversation: conversationHistory
+        });
     } catch (error) {
         console.log(error);
         res.status(500).send({ error })
