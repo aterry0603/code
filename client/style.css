@@ -12,13 +12,14 @@ body {
 }
 
 #side_menu {
-  position: fixed;
+  position:fixed;
   top: 0;
   left: 0;
   width: 240px;
   height: 100%;
   background-color: rgb(46, 44, 44);
   z-index: 1;
+  transition: all 0.3s ease-in-out;
 }
 
 #app {
