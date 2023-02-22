@@ -11,6 +11,20 @@ body {
   background: #343541;
 }
 
+.title-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  background-color: #343541;
+}
+
+h1 {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+
 #side_menu {
   position: fixed;
   top: 0;
@@ -160,7 +174,7 @@ body {
   left:center;
   width: 60%;
   background-color: #40414F;
-  padding: 1px;
+  padding: 10px;
   box-sizing:content-box;
   z-index: 9999;
 }
@@ -187,7 +201,7 @@ form {
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 1px;
+  padding: 5px;
   background: #40414F;
 
   display: flex;
@@ -201,7 +215,7 @@ textarea {
   resize: none;
   border: none;
   outline: none;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 button {
