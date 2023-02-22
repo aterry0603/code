@@ -23,7 +23,7 @@ body {
 }
 
 /* Media query for devices with screen width less than 768px (e.g., mobile devices) */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1000px) {
   #side_menu {
     display: none; /* Hide #side_menu for mobile devices */
   }
@@ -148,6 +148,7 @@ form {
   display: flex;
   flex-direction: row;
   gap: 10px;
+  justify-content: center; /* add this line */
 }
 
 textarea {
