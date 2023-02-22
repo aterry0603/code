@@ -12,7 +12,7 @@ body {
 }
 
 #side_menu {
-  position:fixed;
+  position: fixed;
   top: 0;
   left: 0;
   width: 240px;
@@ -21,6 +21,16 @@ body {
   z-index: 1;
   transition: all 0.3s ease-in-out;
 }
+
+/* Media query for devices with screen width less than 768px (e.g., mobile devices) */
+@media screen and (max-width: 768px) {
+  #side_menu {
+    display: none; /* Hide #side_menu for mobile devices */
+  }
+}
+
+
+
 
 #app {
   width: 100vw;
