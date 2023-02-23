@@ -63,7 +63,7 @@ const handleSubmit = async (e) => {
     const data = new FormData(form);
     const promptValue = data.get('prompt').trim();
   
-    if (promptValue.toLowerCase() === 'what is your name'){
+    if (promptValue.toLowerCase() === 'what is your name' || promptValue.toLowerCase() === 'tell me your name'){
       chatContainer.innerHTML += chatStripe(true, "My name is Pinto! How can I assist you?", generateUniqueId());
 
       
