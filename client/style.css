@@ -72,6 +72,56 @@ h1 {
   background-color: #2c3e50;
 }
 
+#history-container {
+  margin-top: 20px;
+  padding: 10px;
+  
+}
+
+#history-btn {
+  background-color: #5fb482;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+#history-container h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  
+}
+
+#chat-history-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#chat-history-list li {
+  margin-bottom: 10px;
+}
+
+#delete-history-container {
+  margin-top: 20px;
+}
+
+#delete-history-btn {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+#delete-history-btn:hover {
+  background-color: #c82333;
+}
+
 
 #app {
   width: 100vw;
@@ -213,12 +263,13 @@ h1 {
 form {
   width: 100%;
   max-width: 1280px;
-  margin: 0;
-  padding: 1px;
+  margin: 10px;
+  padding: 10px;
   background: transparent;
-
+  border-radius: 5px;
   display: flex;
   flex-direction: row;
+  box-shadow: 0 0 2px 0;
   gap: 5px;
 }
 
