@@ -1,6 +1,12 @@
 import bot from './assets/bot.svg';
 import user from './assets/user.svg';
 
+
+const chatHistoryButton = document.querySelector('#chat_history_button');
+const chatHistoryContainer = document.querySelector('#chat_history_container');
+let chatHistoryCount = 0;
+let chatHistory = [];
+
 const form = document.querySelector('form');
 const chatContainer = document.querySelector('#chat_container');
 
@@ -103,6 +109,9 @@ const handleSubmit = async (e) => {
         const parsedData = data.bot.trim();
   
         typeText(messageDiv, parsedData);
+
+       // scroll chat container to the bottom
+        chatContainer.scrollTop = chatContainer.scrollHeight;
       } else {
         const err = await response.text();
   
@@ -121,56 +130,57 @@ form.addEventListener('keyup', (e) => {
 })
 
 
-function saveChatHistory(chatHistory) {
-    localStorage.setItem('chatHistory', JSON.stringify(chatHistory));
-  }
-  
-  function openChatHistory() {
-    const chatHistory = JSON.parse(localStorage.getItem('chatHistory'));
-    if (chatHistory) {
-      chatHistory.forEach(chat => {
-        const chatContainer = document.querySelector('#chat_container');
-        chatContainer.innerHTML += chat;
-      });
-    }
-  }
-  
-  function retrieveChatHistory() {
-    const chatHistory = JSON.parse(localStorage.getItem('chatHistory'));
-    if (chatHistory) {
-      return chatHistory;
-    } else {
-      return [];
-    }
-  }
-  
-  function deleteChatHistory() {
-    localStorage.removeItem('chatHistory');
-  }
-  
-  function startNewChat() {
+function startNewChat() {
     const chatContainer = document.querySelector('#chat_container');
     chatContainer.innerHTML = '';
-  
-    const chatHistory = retrieveChatHistory();
-    chatHistory.push(chatContainer.innerHTML);
-    saveChatHistory(chatHistory);
+    
+    // create a new chat window
+    const newChatWindow = document.createElement('div');
+    newChatWindow.classList.add('chat-window');
+    
+    // add the new chat window to the chat container
+    chatContainer.appendChild(newChatWindow);
+    
+    // save the new chat window in localStorage
+    const timestamp = new Date().getTime();
+    localStorage.setItem(timestamp, newChatWindow.outerHTML);
+    
+    // set the active chat window to the new chat window
+    setActiveChatWindow(newChatWindow);
   }
 
+  function retrieveChatHistory() {
+    const chatContainer = document.querySelector('#chat_container');
+    
+    // get all saved chat windows from localStorage
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      
+      // check if the key is a timestamp (to filter out other data saved in localStorage)
+      if (!isNaN(key)) {
+        const chatWindowHTML = localStorage.getItem(key);
+        
+        // create a new chat window and add it to the chat container
+        const chatWindow = document.createElement('div');
+        chatWindow.classList.add('chat-window');
+        chatWindow.innerHTML = chatWindowHTML;
+        chatContainer.appendChild(chatWindow);
+      }
+    }
+  }
+
+  function deleteChatHistory() {
+    const chatContainer = document.querySelector('#chat_container');
+    
+    // remove all chat windows from the chat container
+    while (chatContainer.firstChild) {
+      chatContainer.removeChild(chatContainer.firstChild);
+    }
+    
+    // remove all saved chat windows from localStorage
+    localStorage.clear();
+    
+    // show a message to indicate that the chat history has been deleted
+    alert('Chat history has been deleted!');
+  }
   
-  document.addEventListener('DOMContentLoaded', () => {
-    openChatHistory();
-  });
-  
-
-  const historyBtn = document.querySelector('#history-btn');
-historyBtn.addEventListener('click', () => {
-  const chatHistory = retrieveChatHistory();
-  console.log(chatHistory); // or display the chat history in a modal or a separate page
-});
-
-
-const deleteHistoryBtn = document.querySelector('#delete-history-btn');
-deleteHistoryBtn.addEventListener('click', () => {
-  deleteChatHistory();
-});
