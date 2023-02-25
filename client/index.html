@@ -4,38 +4,34 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title >Pinto AI</title>
+    <title>Pinto AI</title>
     <link rel="stylesheet" href="style.css">
   </head>
-  <div class="title-container">
-    <h1><p style="color: brown;"></style>Pinto AI</p></h1>
-  </div>
-
   <body>
+    <div class="title-container">
+      <h1><p style="color: brown;">Pinto AI</p></h1>
+    </div>
+
     <div id="side_menu">
       <button id="new_chat_button" onclick="startNewChat()">New Chat</button>
-      
 
       <div id="history-container">
         <button id="history-btn">Chat History</button>
       </div>
-      
+
       <div id="delete-history-container">
         <button id="delete-history-btn">Delete Chat History</button>
       </div>
-
-      
     </div>
+
     <div id="app">
       <div id="chat_container"></div>
 
       <div class="form-container">
         <form>
-          <label style="color: brown;"><for="prompt">Ask Pinto...</label>
+          <label style="color: brown;">Ask Pinto...</label>
           <textarea id="prompt" name="prompt" rows="1" cols="1" placeholder="Enter Question here..."></textarea>
           <button type="submit"><img src="assets/send.svg" alt="Send"></button>
-         
-         
         </form>
         <div class="form-footer">
           <p>&copy; 2023 Altec. All Rights Reserved.</p>
@@ -43,7 +39,6 @@
       </div>
     </div>
 
-    
     <script type="module" src="script.js"></script>
     <script>
       function startNewChat() {
@@ -52,5 +47,4 @@
       }
     </script>
   </body>
-  
 </html>
